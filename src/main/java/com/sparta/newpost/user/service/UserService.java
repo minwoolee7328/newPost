@@ -24,11 +24,13 @@ public class UserService {
 
         // 중복되는 닉네임/아이디가 있는지검사
         Optional<User> checkNickname = userRepository.findByNickname(requestDto.getUsername());
+
         if(checkNickname.isPresent()){
              throw new IllegalArgumentException("중복되는 닉네임이 이미 있습니다.");
         }
 
         Optional<User> checkUsername = userRepository.findByUsername(requestDto.getUsername());
+
         if(checkUsername.isPresent()){
             throw new IllegalArgumentException("중복되는 아이디가 이미 있습니다.");
         }
